@@ -1,27 +1,29 @@
 import React from 'react';
-import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import MoviePoster from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
-import { appStyles } from '../themes/appTheme';
 
 const HomeScreen = () => {
   const { moviesReleased, isLoading } = useMovies();
+  const { top } = useSafeAreaInsets();
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
+      <View style={styles.loadingContainer}>
         <ActivityIndicator color="red" size={100} />
       </View>
     );
   }
   return (
-    <View style={styles.container}>
-      <Text style={appStyles.title}>{moviesReleased[0].title}</Text>
+    <View style={{ marginTop: top + 20 }}>
+      <MoviePoster movie={moviesReleased[0]} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
