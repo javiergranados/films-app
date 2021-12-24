@@ -10,7 +10,7 @@ import { MovieListProps } from '../interfaces/movieInterface';
 const { width: windowWith } = Dimensions.get('window');
 
 const HomeScreen = () => {
-  const { moviesReleased, isLoading } = useMovies();
+  const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
   const { top } = useSafeAreaInsets();
 
   if (isLoading) {
@@ -25,14 +25,17 @@ const HomeScreen = () => {
       <View style={{ marginTop: top + 20 }}>
         <View style={styles.carouselContainer}>
           <Carousel
-            data={moviesReleased}
+            data={nowPlaying}
             renderItem={({ item }: MovieListProps) => <MoviePoster movie={item} />}
             sliderWidth={windowWith}
             itemWidth={300}
             inactiveSlideOpacity={0.9}
           />
         </View>
-        <HorizontalSlider title="Movie billboard" movies={moviesReleased} />
+        <HorizontalSlider title="Billboard" movies={nowPlaying} />
+        <HorizontalSlider title="Popular" movies={popular} />
+        <HorizontalSlider title="Top Rated" movies={topRated} />
+        <HorizontalSlider title="Coming soon" movies={upcoming} />
       </View>
     </ScrollView>
   );
