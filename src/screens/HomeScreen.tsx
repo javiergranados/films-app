@@ -1,17 +1,13 @@
 import React from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, Dimensions, ScrollView } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import MoviePoster from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
-import { Movie } from '../interfaces/movieInterface';
+import MoviePoster from '../components/MoviePoster';
+import HorizontalSlider from '../components/HorizontalSlider';
+import { MovieListProps } from '../interfaces/movieInterface';
 
 const { width: windowWith } = Dimensions.get('window');
-
-interface CarouselProps {
-  item: Movie;
-  index: number;
-}
 
 const HomeScreen = () => {
   const { moviesReleased, isLoading } = useMovies();
@@ -25,16 +21,20 @@ const HomeScreen = () => {
     );
   }
   return (
-    <View style={{ marginTop: top + 20 }}>
-      <View style={styles.carouselContainer}>
-        <Carousel
-          data={moviesReleased}
-          renderItem={({ item }: CarouselProps) => <MoviePoster movie={item} />}
-          sliderWidth={windowWith}
-          itemWidth={300}
-        />
+    <ScrollView>
+      <View style={{ marginTop: top + 20 }}>
+        <View style={styles.carouselContainer}>
+          <Carousel
+            data={moviesReleased}
+            renderItem={({ item }: MovieListProps) => <MoviePoster movie={item} />}
+            sliderWidth={windowWith}
+            itemWidth={300}
+            inactiveSlideOpacity={0.9}
+          />
+        </View>
+        <HorizontalSlider title="Movie billboard" movies={moviesReleased} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

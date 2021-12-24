@@ -4,13 +4,15 @@ import { Movie } from '../interfaces/movieInterface';
 
 interface MoviePosterProps {
   movie: Movie;
+  width?: number;
+  height?: number;
 }
 
-const MoviePoster = ({ movie }: MoviePosterProps) => {
+const MoviePoster = ({ movie, width = 300, height = 420 }: MoviePosterProps) => {
   const uri = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
 
   return (
-    <View style={styles.container}>
+    <View style={{ width, height, marginHorizontal: 8 }}>
       <View style={styles.imageContainer}>
         <Image
           source={{
@@ -24,10 +26,6 @@ const MoviePoster = ({ movie }: MoviePosterProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: 300,
-    height: 420,
-  },
   imageContainer: {
     flex: 1,
     borderRadius: 18,
@@ -38,7 +36,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.24,
     shadowRadius: 7,
-    elevation: 10,
+    elevation: 9,
   },
   image: {
     flex: 1,

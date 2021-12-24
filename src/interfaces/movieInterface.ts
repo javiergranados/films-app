@@ -33,3 +33,8 @@ export interface Movie {
 export enum OriginalLanguage {
   En = 'en',
 }
+
+export interface MovieListProps {
+  item: Movie;
+  index: number;
+}
