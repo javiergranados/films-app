@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import movieDB from '../api/movieDB';
-import { MovieDBNowPlaying } from '../interfaces/movieInterface';
+import React from 'react';
+import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { useMovies } from '../hooks/useMovies';
 import { appStyles } from '../themes/appTheme';
 
 const HomeScreen = () => {
-  useEffect(() => {
-    movieDB.get<MovieDBNowPlaying>('/now_playing').then((res) => {
-      console.log(res.data.results);
-    });
-  }, []);
+  const { moviesReleased, isLoading } = useMovies();
 
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator color="red" size={100} />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
-      <Text style={appStyles.title}>Home screen</Text>
+      <Text style={appStyles.title}>{moviesReleased[0].title}</Text>
     </View>
   );
 };
@@ -21,6 +23,8 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
