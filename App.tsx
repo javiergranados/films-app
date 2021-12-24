@@ -1,8 +1,13 @@
 import React from 'react';
-import FilmsScreen from './src/screens/FilmsScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigator from './src/navigators/StackNavigator';
 
 const App = () => {
-  return <FilmsScreen />;
+  return (
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
+  );
 };
 
 export default App;

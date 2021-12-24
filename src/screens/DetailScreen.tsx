@@ -2,10 +2,10 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { appStyles } from '../themes/appTheme';
 
-const FilmsScreen = () => {
+const DetailScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={appStyles.title}>Films screen</Text>
+      <Text style={appStyles.title}>Detail screen</Text>
     </View>
   );
 };
@@ -16,4 +16,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FilmsScreen;
+export default DetailScreen;
