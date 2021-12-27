@@ -3,6 +3,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { View, StyleSheet, Image, Dimensions, ScrollView, Text } from 'react-native';
 import { RootStackParamList } from '../navigators/StackNavigator';
+import { useMovieDetails } from '../hooks/useMovieDetails';
 
 const { height: screenHeight } = Dimensions.get('screen');
 
@@ -11,6 +12,9 @@ interface DetailScreenProps extends StackScreenProps<RootStackParamList, 'Detail
 const DetailScreen = ({ route }: DetailScreenProps) => {
   const movie = route.params;
   const uri = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
+
+  const { movieDetails, cast, isLoading } = useMovieDetails(movie.id);
+  console.log({ movieDetails, cast, isLoading });
 
   return (
     <ScrollView>
