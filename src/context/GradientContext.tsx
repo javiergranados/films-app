@@ -4,8 +4,8 @@ import { gradientReducer } from './GradientReducer';
 
 const gradientInitialState: GradientState = {
   mainColors: {
-    primary: 'red',
-    secondary: 'blue',
+    primary: 'transparent',
+    secondary: 'transparent',
   },
   prevColors: {
     primary: 'transparent',
