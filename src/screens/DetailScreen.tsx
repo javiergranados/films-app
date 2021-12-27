@@ -14,6 +14,7 @@ import { RootStackParamList } from '../navigators/StackNavigator';
 import { useMovieDetails } from '../hooks/useMovieDetails';
 import MovieDetails from '../components/MovieDetails';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { getUri } from '../utils';
 
 const { height: screenHeight } = Dimensions.get('screen');
 
@@ -21,7 +22,7 @@ interface DetailScreenProps extends StackScreenProps<RootStackParamList, 'Detail
 
 const DetailScreen = ({ route, navigation }: DetailScreenProps) => {
   const movie = route.params;
-  const uri = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
+  const uri = getUri(movie.poster_path);
 
   const { movieDetails, cast, isLoading } = useMovieDetails(movie.id);
 

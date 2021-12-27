@@ -4,6 +4,7 @@ import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Movie } from '../interfaces/movieInterface';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigators/StackNavigator';
+import { getUri } from '../utils';
 
 type MoviePosterNavigationrops = StackNavigationProp<RootStackParamList, 'HomeScreen'>;
 
@@ -15,7 +16,7 @@ interface MoviePosterProps {
 
 const MoviePoster = ({ movie, width = 300, height = 420 }: MoviePosterProps) => {
   const navigation = useNavigation<MoviePosterNavigationrops>();
-  const uri = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
+  const uri = getUri(movie.poster_path);
 
   return (
     <TouchableOpacity
