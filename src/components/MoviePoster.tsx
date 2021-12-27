@@ -14,13 +14,12 @@ interface MoviePosterProps {
 }
 
 const MoviePoster = ({ movie, width = 300, height = 420 }: MoviePosterProps) => {
-  const uri = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
-
   const navigation = useNavigation<MoviePosterNavigationrops>();
+  const uri = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
 
   return (
     <TouchableOpacity
-      style={{ width, height, marginHorizontal: 8 }}
+      style={{ ...styles.container, width, height }}
       activeOpacity={0.8}
       onPress={() => navigation.navigate('DetailScreen', movie)}
     >
@@ -37,6 +36,11 @@ const MoviePoster = ({ movie, width = 300, height = 420 }: MoviePosterProps) => 
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 2,
+    paddingBottom: 20,
+    paddingHorizontal: 7,
+  },
   imageContainer: {
     flex: 1,
     borderRadius: 18,
