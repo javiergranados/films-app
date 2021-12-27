@@ -9,7 +9,10 @@ export interface GradientState {
 }
 
 export interface GradientContextProps extends GradientState {
-  setColors: (colors: ImageColors) => void;
+  setMainColors: (colors: ImageColors) => void;
+  setPrevColors: (colors: ImageColors) => void;
 }
 
-export type GradientActions = { type: 'SET_COLORS'; payload: ImageColors };
+export type GradientActions =
+  | { type: 'SET_MAIN_COLORS'; payload: ImageColors }
+  | { type: 'SET_PREV_COLORS'; payload: ImageColors };

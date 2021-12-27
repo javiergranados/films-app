@@ -18,13 +18,16 @@ export const GradientContext = createContext({} as GradientContextProps);
 export const GradientProvider = ({ children }: any) => {
   const [gradientState, dispatch] = useReducer(gradientReducer, gradientInitialState);
 
-  const setColors = (colors: ImageColors) => dispatch({ type: 'SET_COLORS', payload: colors });
+  const setMainColors = (colors: ImageColors) => dispatch({ type: 'SET_MAIN_COLORS', payload: colors });
+
+  const setPrevColors = (colors: ImageColors) => dispatch({ type: 'SET_PREV_COLORS', payload: colors });
 
   return (
     <GradientContext.Provider
       value={{
         ...gradientState,
-        setColors,
+        setMainColors,
+        setPrevColors,
       }}
     >
       {children}

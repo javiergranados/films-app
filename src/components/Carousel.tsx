@@ -13,14 +13,14 @@ interface CarouselProps {
 }
 
 const Carousel = ({ movies }: CarouselProps) => {
-  const { setColors } = useContext(GradientContext);
+  const { setMainColors } = useContext(GradientContext);
 
   const getPosterColors = async (index: number) => {
     const selectedMovie = movies[index];
     const uri = getUri(selectedMovie.poster_path);
 
     const [primary, secondary] = await getImageColors(uri);
-    setColors({ primary, secondary });
+    setMainColors({ primary, secondary });
   };
 
   useEffect(() => {
