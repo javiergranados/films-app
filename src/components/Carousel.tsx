@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions, View } from 'react-native';
 import SnapCarousel from 'react-native-snap-carousel';
 import MoviePoster from './MoviePoster';
 import { Movie, MovieListProps } from '../interfaces/movieInterface';
+import { getImageColors, getUri } from '../utils';
 
 const { width: windowWith } = Dimensions.get('window');
 
@@ -11,6 +12,14 @@ interface CarouselProps {
 }
 
 const Carousel = ({ movies }: CarouselProps) => {
+  const getPosterColors = async (index: number) => {
+    const selectedMovie = movies[index];
+    const uri = getUri(selectedMovie.poster_path);
+
+    const [primary, secondary] = await getImageColors(uri);
+    console.log({ primary, secondary });
+  };
+
   return (
     <View style={styles.carouselContainer}>
       <SnapCarousel
@@ -19,6 +28,7 @@ const Carousel = ({ movies }: CarouselProps) => {
         sliderWidth={windowWith}
         itemWidth={300}
         inactiveSlideOpacity={0.9}
+        onSnapToItem={getPosterColors}
       />
     </View>
   );
