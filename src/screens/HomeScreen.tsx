@@ -4,6 +4,7 @@ import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import { useMovies } from '../hooks/useMovies';
 import Carousel from '../components/Carousel';
 import HorizontalSlider from '../components/HorizontalSlider';
+import GradientBackground from '../components/GradientBackground';
 
 const HomeScreen = () => {
   const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
@@ -17,15 +18,17 @@ const HomeScreen = () => {
     );
   }
   return (
-    <ScrollView>
-      <View style={{ marginTop: top + 20 }}>
-        <Carousel movies={nowPlaying} />
-        <HorizontalSlider title="Billboard" movies={nowPlaying} />
-        <HorizontalSlider title="Popular" movies={popular} />
-        <HorizontalSlider title="Top Rated" movies={topRated} />
-        <HorizontalSlider title="Coming soon" movies={upcoming} />
-      </View>
-    </ScrollView>
+    <GradientBackground>
+      <ScrollView>
+        <View style={{ marginTop: top + 20 }}>
+          <Carousel movies={nowPlaying} />
+          <HorizontalSlider title="Billboard" movies={nowPlaying} />
+          <HorizontalSlider title="Popular" movies={popular} />
+          <HorizontalSlider title="Top Rated" movies={topRated} />
+          <HorizontalSlider title="Coming soon" movies={upcoming} />
+        </View>
+      </ScrollView>
+    </GradientBackground>
   );
 };
 
