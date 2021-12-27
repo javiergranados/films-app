@@ -16,9 +16,6 @@ const StackNavigator = () => {
     <RootStack.Navigator
       screenOptions={{
         headerShown: false,
-        cardStyle: {
-          backgroundColor: 'white',
-        },
       }}
     >
       <RootStack.Screen name="HomeScreen" options={{ title: 'Home' }} component={HomeScreen} />
